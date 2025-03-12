@@ -19,7 +19,7 @@ jobs:
   deployment:
     name: Deployment
     runs-on: ubuntu-22.04
-    environment: develop
+    environment: main
     defaults:
       run:
         working-directory: ./frontend
