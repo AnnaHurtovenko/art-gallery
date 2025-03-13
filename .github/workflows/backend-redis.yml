@@ -8,11 +8,11 @@ permissions:
   contents: read
 
 env:
-  ECS_CLUSTER: Ecs
-  ECS_SERVICE: frontend-service
-  ECS_TASK_DEFINITION: frontent-task
-  ECR_REPOSITORY: frontend
-  CONTAINER_NAME: frontend
+  ECS_CLUSTER: art-gallery
+  ECS_SERVICE: backend-redis-service
+  ECS_TASK_DEFINITION: backend-redis-task
+  ECR_REPOSITORY: backend-redis
+  CONTAINER_NAME: backend-redis
   AWS_REGION: us-east-1
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
     environment: main
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./backend_redis
     
     steps:
       - name: Checkout
@@ -34,7 +34,7 @@ jobs:
       - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::YOUR_ACCOUNT_ID:role/YOUR_GITHUB_OIDC_ROLE
+          role-to-assume: ${{secrets.AWS_ROLE_TO_ASSUME}}
           role-session-name: GitHubActions
           aws-region: ${{ env.AWS_REGION }}
       
@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          context: ./frontend
+          context: ./backend_redis
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
