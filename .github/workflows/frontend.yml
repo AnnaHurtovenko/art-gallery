@@ -15,7 +15,7 @@ env:
   ECS_CLUSTER: art-gallery
   ECS_SERVICE: frontend-service
   ECS_TASK_DEFINITION: frontend-task
-  ECR_REPOSITORY: 615299759149.dkr.ecr.us-east-1.amazonaws.com/frontend
+  ECR_REPOSITORY: frontend
   CONTAINER_NAME: frontend-container
   AWS_REGION: us-east-1
 
