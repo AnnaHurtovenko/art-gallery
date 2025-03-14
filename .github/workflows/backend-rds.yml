@@ -15,7 +15,7 @@ env:
   ECS_CLUSTER: art-gallery
   ECS_SERVICE: backend-rds-service
   ECS_TASK_DEFINITION: backend-rds-task
-  ECR_REPOSITORY: 615299759149.dkr.ecr.us-east-1.amazonaws.com/backend-rds
+  ECR_REPOSITORY: backend-rds
   CONTAINER_NAME: backend-rds
   AWS_REGION: us-east-1
 
