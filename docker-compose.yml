@@ -14,8 +14,8 @@ services:
      context: ./frontend
    container_name: frontend
    environment:
-      - BACKEND_RDS_URL=http://backend-rds:8000/test_connection/
-      - BACKEND_REDIS_URL=http://backend-redis:8001/test_connection/
+      - BACKEND_RDS_URL=http://backend-rds-service.backend.ecs:8000/test_connection/
+      - BACKEND_REDIS_URL=http://backend-redis-service.backend.ecs:8001/test_connection/
    ports:
      - "80:8002"
    depends_on:
