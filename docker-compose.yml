@@ -14,8 +14,8 @@ services:
      context: ./frontend
    container_name: frontend
    environment:
-      - BACKEND_RDS_URL=http://backend-rds-service.backend.ecs:8000/test_connection/
-      - BACKEND_REDIS_URL=http://backend-redis-service.backend.ecs:8001/test_connection/
+      - BACKEND_RDS_URL=http://internal-backend-alb-878727118.us-east-1.elb.amazonaws.com:8000/test_connection/
+      - BACKEND_REDIS_URL=http://internal-backend-alb-878727118.us-east-1.elb.amazonaws.com:8001/test_connection/
    ports:
      - "80:8002"
    depends_on:
