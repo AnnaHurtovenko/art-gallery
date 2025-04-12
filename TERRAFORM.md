@@ -81,8 +81,7 @@ terraform {
 
 ---
 
-### 🗺 Full Infra Workflow Diagram
-
+## 📺 Full Infra Workflow Diagram
 ```mermaid
 graph TD
   A[Dev: VS Code / Local] --> B[GitHub push]
@@ -90,6 +89,7 @@ graph TD
   C --> D[terraform plan and apply (remote)]
   D --> E[OIDC IAM Role]
   E --> F[AWS infrastructure (VPC, ECS, RDS, etc)]
+```
 
 ---
 
@@ -120,4 +120,6 @@ terraform apply      # Apply manually (if not using auto-apply)
 ```
 
 ---
+
+💥 Now you're ready to deploy fully remotely through Terraform Cloud!
 
