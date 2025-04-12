@@ -25,17 +25,6 @@ variable "idle_timeout" {
   default     = 60
 }
 
-variable "ssl_policy" {
-  description = "The SSL policy to be applied to the load balancer"
-  type        = string
-  default     = "ELBSecurityPolicy-2016-08"
-}
-
-variable "ssl_certificate_arn" {
-  description = "The ARN of the SSL certificate"
-  type        = string
-}
-
 variable "target_group_name" {
   description = "The name of the target group"
   type        = string
