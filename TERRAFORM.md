@@ -6,7 +6,7 @@ terraform/
 ├── main.tf                # Module composition and backend definition
 ├── variables.tf           # Global input variables
 ├── outputs.tf             # Global output values
-├── providers.tf           # AWS provider config
+├── security_group.tf      # AWS security_group
 ├── versions.tf            # Terraform and provider version
 ├── .gitignore             # Ignore local or sensitive files
 │
@@ -81,15 +81,15 @@ terraform {
 
 ---
 
-## 🔁 Full Infra Workflow Diagram
+### 🗺 Full Infra Workflow Diagram
+
 ```mermaid
 graph TD
-    A[Dev: VS Code / Local] --> B[GitHub push]
-    B --> C[Terraform Cloud workspace]
-    C --> D[terraform plan & apply (remote)]
-    D --> E[OIDC IAM Role]
-    E --> F[AWS infrastructure (VPC, ECS, RDS, etc)]
-```
+  A[Dev: VS Code / Local] --> B[GitHub push]
+  B --> C[Terraform Cloud workspace]
+  C --> D[terraform plan and apply (remote)]
+  D --> E[OIDC IAM Role]
+  E --> F[AWS infrastructure (VPC, ECS, RDS, etc)]
 
 ---
 
@@ -120,27 +120,4 @@ terraform apply      # Apply manually (if not using auto-apply)
 ```
 
 ---
-
-## 🧪 Troubleshooting Tips
-- ✅ **No output in workspace?** Check if outputs are declared properly
-- 🔐 **Authentication issues?** Verify your IAM role trust policy and token
-- 🔁 **Run not triggered?** Check workspace connection to GitHub and `main.tf` changes
-
----
-
-## ✅ Status
-- ✔️ Configuration is valid
-- 🧠 Managed entirely via Terraform Cloud
-- ☁️ Remote state and runs secured via OIDC
-
----
-
-## 💡 Notes
-- Infrastructure is modular and extensible
-- ECR + ECS services are ready for CI/CD integration
-- Backend state is not stored locally — Terraform Cloud handles it
-
----
-
-Built with 💙 for scalable infrastructure
 
