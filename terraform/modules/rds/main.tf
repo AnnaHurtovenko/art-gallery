@@ -17,7 +17,7 @@ resource "aws_db_instance" "postgresql" {
   db_name                 = var.postgresql_db_name
   username                = var.postgresql_username
   password                = var.postgresql_password
-  db_port                 = var.postgresql_db_port
+  #db_port                 = var.postgresql_db_port
   multi_az                = var.postgresql_multi_az
   storage_type            = var.postgresql_storage_type
   skip_final_snapshot     = var.postgresql_skip_final_snapshot

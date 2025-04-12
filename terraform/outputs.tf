@@ -52,15 +52,15 @@ output "ecs_cluster_id" {
 }
 
 output "cloud_map_frontend_arn" {
-  value       = module.ecs.cloud_map_frontend_arn
+  value = module.ecs.cloud_map_frontend_arn
 }
 
 output "cloud_map_backend_rds_arn" {
-  value       = module.ecs.cloud_map_backend_rds_arn
+  value = module.ecs.cloud_map_backend_rds_arn
 }
 
 output "cloud_map_backend_redis_arn" {
-  value       = module.ecs.cloud_map_backend_redis_arn
+  value = module.ecs.cloud_map_backend_redis_arn
 }
 
 

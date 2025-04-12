@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source  = "./modules/vpc"
+  source = "./modules/vpc"
 
   vpc_name           = var.vpc_name
   cidr_block         = var.cidr_block
@@ -30,10 +30,10 @@ module "alb" {
   ssl_policy          = "ELBSecurityPolicy-2016-08"
   ssl_certificate_arn = var.ssl_certificate_arn
 
-  target_group_name   = "frontend-target-group"
-  vpc_id              = module.vpc.vpc_id
-  health_check_path   = "/"
-  tags                = var.tags
+  target_group_name = "frontend-target-group"
+  vpc_id            = module.vpc.vpc_id
+  health_check_path = "/"
+  tags              = var.tags
 }
 
 module "ecr" {
@@ -43,12 +43,12 @@ module "ecr" {
 module "iam" {
   source = "./modules/iam"
 
-  environment                           = var.environment
-  project_tag                           = var.project_tag
-  ecs_execution_role_name               = "ecsTaskExecutionRole"
+  environment                          = var.environment
+  project_tag                          = var.project_tag
+  ecs_execution_role_name              = "ecsTaskExecutionRole"
   attach_cloudwatch_logs_for_execution = true
-  create_ecs_task_role                  = true
-  ecs_task_role_name                    = "ecsTaskAppRole"
+  create_ecs_task_role                 = true
+  ecs_task_role_name                   = "ecsTaskAppRole"
 }
 
 module "ecs" {
@@ -60,16 +60,16 @@ module "ecs" {
 }
 
 module "ecs_frontend" {
-  source                  = "./modules/ecs/services"
-  frontend_image          = module.ecr.frontend_url
-  execution_role_arn      = module.iam.ecs_execution_role_arn
-  ecs_cluster_id          = module.ecs.ecs_cluster_id
-  region                  = var.region
-  private_subnets         = module.vpc.private_subnets
-  ecs_sg_id               = aws_security_group.ecs_sg.id
-  cloud_map_frontend_arn  = module.ecs.cloud_map_frontend_arn
-  frontend_env_vars       = []
-  frontend_tg_arn         = module.alb.target_group_arn
+  source                 = "./modules/ecs/services"
+  frontend_image         = module.ecr.frontend_url
+  execution_role_arn     = module.iam.ecs_execution_role_arn
+  ecs_cluster_id         = module.ecs.ecs_cluster_id
+  region                 = var.region
+  private_subnets        = module.vpc.private_subnets
+  ecs_sg_id              = aws_security_group.ecs_sg.id
+  cloud_map_frontend_arn = module.ecs.cloud_map_frontend_arn
+  frontend_env_vars      = []
+  frontend_tg_arn        = module.alb.target_group_arn
 }
 
 module "ecs_backend_rds" {
@@ -112,9 +112,9 @@ module "rds" {
 }
 
 module "cloudwatch" {
-  source            = "./modules/cloudwatch"
-  environment       = var.environment
-  project_tag       = var.project_tag
-  ecs_cluster_name  = "art-gallery-cluster"
-  alarm_actions     = []
+  source           = "./modules/cloudwatch"
+  environment      = var.environment
+  project_tag      = var.project_tag
+  ecs_cluster_name = "art-gallery-cluster"
+  alarm_actions    = []
 }

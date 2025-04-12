@@ -6,9 +6,8 @@ resource "aws_lb" "frontend" {
   subnets            = var.subnets  # Публічні сaбнети для ALB
 
   enable_deletion_protection = var.deletion_protection
-  idle_timeout {
-    seconds = var.idle_timeout
-  }
+  idle_timeout = var.idle_timeout
+
 
   tags = var.tags
 }
@@ -65,8 +64,4 @@ resource "aws_lb_target_group" "frontend" {
   tags = var.tags
 }
 
-resource "aws_lb_target_group_attachment" "frontend_attachment" {
-  target_group_arn = aws_lb_target_group.frontend.arn
-  target_id        = var.target_id
-  port             = 80
-}
+

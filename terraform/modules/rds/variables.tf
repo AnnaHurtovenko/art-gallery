@@ -40,11 +40,6 @@ variable "postgresql_password" {
   sensitive   = true
 }
 
-variable "postgresql_db_port" {
-  description = "Port"
-  type        = number
-  default     = 5432
-}
 
 variable "postgresql_multi_az" {
   description = "Enable multi-AZ deployment"

@@ -57,8 +57,4 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "target_id" {
-  description = "The target ID to attach to the target group"
-  type        = string
-}
 
