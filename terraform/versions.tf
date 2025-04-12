@@ -7,4 +7,13 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "art-gallery-devops"
+
+    workspaces {
+      name = "art-gallery"
+    }
+  }
 }

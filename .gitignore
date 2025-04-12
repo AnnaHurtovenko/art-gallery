@@ -1,0 +1,8 @@
+# Terraform state and config
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.auto.tfvars
+*.tfplan
+crash.log
