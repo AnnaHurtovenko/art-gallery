@@ -54,3 +54,10 @@ resource "aws_ecs_service" "frontend" {
 
   depends_on = [aws_ecs_task_definition.frontend]
 }
+
+dynamic "service_registries" {
+  for_each = var.cloud_map_frontend_arn != null ? [1] : []
+  content {
+    registry_arn = var.cloud_map_frontend_arn
+  }
+}
