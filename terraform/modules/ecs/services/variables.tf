@@ -28,7 +28,7 @@ variable "ecs_sg_id" {
 variable "frontend_image" {
   description = "Docker image for frontend"
   type        = string
-  default     = null
+  default     = "615299759149.dkr.ecr.us-east-1.amazonaws.com/frontend:placeholder"
 }
 
 variable "frontend_env_vars" {
@@ -53,7 +53,7 @@ variable "frontend_tg_arn" {
 variable "backend_rds_image" {
   description = "Docker image for backend-rds"
   type        = string
-  default     = null
+  default     = "615299759149.dkr.ecr.us-east-1.amazonaws.com/backend-rds:placeholder"
 }
 
 variable "backend_rds_env_vars" {
@@ -72,7 +72,7 @@ variable "cloud_map_backend_rds_arn" {
 variable "backend_redis_image" {
   description = "Docker image for backend-redis"
   type        = string
-  default     = null
+  default     = "615299759149.dkr.ecr.us-east-1.amazonaws.com/backend-redis:placeholder"
 }
 
 variable "backend_redis_env_vars" {

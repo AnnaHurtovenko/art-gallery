@@ -1,5 +1,3 @@
-# modules/ecs/services/frontend.tf
-
 resource "aws_ecs_task_definition" "frontend" {
   family                   = "frontend-task"
   network_mode             = "awsvpc"
@@ -15,7 +13,7 @@ resource "aws_ecs_task_definition" "frontend" {
       portMappings = [
         {
           containerPort = 8002
-          protocol       = "tcp"
+          protocol      = "tcp"
         }
       ]
       logConfiguration = {
