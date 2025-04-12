@@ -86,9 +86,9 @@ terraform {
 graph TD
   A[Dev: VS Code / Local] --> B[GitHub push]
   B --> C[Terraform Cloud workspace]
-  C --> D[terraform plan and apply (remote)]
+  C --> D[terraform plan and apply remote]
   D --> E[OIDC IAM Role]
-  E --> F[AWS infrastructure (VPC, ECS, RDS, etc)]
+  E --> F[AWS infrastructure - VPC, ECS, RDS, etc]
 ```
 
 ---
