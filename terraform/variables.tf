@@ -58,11 +58,6 @@ variable "tags" {
   }
 }
 
-# ACM Certificate
-variable "ssl_certificate_arn" {
-  description = "ARN of the ACM SSL certificate"
-  type        = string
-}
 
 # IAM, ECS, RDS
 variable "environment" {
