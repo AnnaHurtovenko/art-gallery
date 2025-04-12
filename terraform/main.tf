@@ -27,8 +27,6 @@ module "alb" {
   subnets             = module.vpc.public_subnets
   deletion_protection = false
   idle_timeout        = 60
-  ssl_policy          = "ELBSecurityPolicy-2016-08"
-  ssl_certificate_arn = var.ssl_certificate_arn
 
   target_group_name = "frontend-target-group"
   vpc_id            = module.vpc.vpc_id
