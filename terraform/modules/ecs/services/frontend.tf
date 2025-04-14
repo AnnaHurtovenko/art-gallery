@@ -52,7 +52,12 @@ resource "aws_ecs_service" "frontend" {
     registry_arn = var.cloud_map_frontend_arn
   }
 
-  depends_on = [aws_ecs_task_definition.frontend]
+  depends_on = [
+    aws_ecs_task_definition.frontend,
+    aws_lb.frontend,
+    aws_lb_target_group.frontend,
+    aws_lb_listener.frontend_http
+  ]
 }
 
 

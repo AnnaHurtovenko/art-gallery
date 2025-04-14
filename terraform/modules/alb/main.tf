@@ -30,7 +30,7 @@ resource "aws_lb_listener" "frontend_http" {
 
 resource "aws_lb_target_group" "frontend" {
   name        = var.target_group_name
-  port        = 80
+  port        = 8002
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = var.vpc_id  # VPC for connection
@@ -38,7 +38,7 @@ resource "aws_lb_target_group" "frontend" {
   health_check {
     interval            = 30
     path                = var.health_check_path
-    port                = 80
+    port                = 8002
     protocol            = "HTTP"
     timeout             = 5
     healthy_threshold   = 2

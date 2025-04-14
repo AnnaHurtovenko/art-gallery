@@ -112,7 +112,7 @@ module "rds" {
   postgresql_db_name                 = "artgallery"
   postgresql_allocated_storage       = 20
   postgresql_instance_class          = "db.t3.micro"
-  postgresql_engine_version          = "13.3"
+  postgresql_engine_version          = "17.2"
   postgresql_multi_az                = false
   postgresql_skip_final_snapshot     = true
   postgresql_backup_retention_period = 0
