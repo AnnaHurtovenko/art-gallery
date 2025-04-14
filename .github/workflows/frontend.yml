@@ -16,7 +16,7 @@ env:
   ECS_SERVICE: frontend-service
   ECS_TASK_DEFINITION: frontend-task
   ECR_REPOSITORY: frontend
-  CONTAINER_NAME: frontend-container
+  CONTAINER_NAME: frontend
   AWS_REGION: us-east-1
 
 jobs:
