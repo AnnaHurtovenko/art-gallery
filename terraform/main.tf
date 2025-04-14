@@ -68,18 +68,24 @@ module "ecs_frontend" {
   cloud_map_frontend_arn = module.ecs.cloud_map_frontend_arn
   frontend_env_vars      = []
   frontend_tg_arn        = module.alb.target_group_arn
+
+  cloud_map_backend_rds_arn   = module.ecs.cloud_map_backend_rds_arn
+  cloud_map_backend_redis_arn = module.ecs.cloud_map_backend_redis_arn
 }
 
 module "ecs_backend_rds" {
-  source                    = "./modules/ecs/services"
-  backend_rds_image         = module.ecr.backend_rds_url
-  execution_role_arn        = module.iam.ecs_execution_role_arn
-  ecs_cluster_id            = module.ecs.ecs_cluster_id
-  region                    = var.region
-  private_subnets           = module.vpc.private_subnets
-  ecs_sg_id                 = aws_security_group.ecs_sg.id
-  cloud_map_backend_rds_arn = module.ecs.cloud_map_backend_rds_arn
-  backend_rds_env_vars      = []
+  source                      = "./modules/ecs/services"
+  backend_rds_image           = module.ecr.backend_rds_url
+  execution_role_arn          = module.iam.ecs_execution_role_arn
+  ecs_cluster_id              = module.ecs.ecs_cluster_id
+  region                      = var.region
+  private_subnets             = module.vpc.private_subnets
+  ecs_sg_id                   = aws_security_group.ecs_sg.id
+  cloud_map_backend_rds_arn   = module.ecs.cloud_map_backend_rds_arn
+
+  cloud_map_frontend_arn      = module.ecs.cloud_map_frontend_arn
+  cloud_map_backend_redis_arn = module.ecs.cloud_map_backend_redis_arn
+  frontend_tg_arn             = module.alb.target_group_arn
 }
 
 module "ecs_backend_redis" {
@@ -91,7 +97,10 @@ module "ecs_backend_redis" {
   private_subnets             = module.vpc.private_subnets
   ecs_sg_id                   = aws_security_group.ecs_sg.id
   cloud_map_backend_redis_arn = module.ecs.cloud_map_backend_redis_arn
-  backend_redis_env_vars      = []
+
+  cloud_map_frontend_arn      = module.ecs.cloud_map_frontend_arn
+  cloud_map_backend_rds_arn   = module.ecs.cloud_map_backend_rds_arn
+  frontend_tg_arn             = module.alb.target_group_arn
 }
 
 module "rds" {
