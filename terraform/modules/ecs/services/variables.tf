@@ -1,11 +1,36 @@
-# === Загальні для всіх сервісів ===
+# === Загальні змінні для ECS сервісу ===
+
+variable "service_name" {
+  description = "Name of the ECS service and container"
+  type        = string
+}
+
+variable "container_image" {
+  description = "Docker image for the service"
+  type        = string
+}
+
+variable "container_env_vars" {
+  description = "Environment variables for the container"
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  default = []
+}
+
+variable "container_port" {
+  description = "Port the container listens on"
+  type        = number
+}
+
 variable "execution_role_arn" {
   description = "IAM execution role ARN for ECS task"
   type        = string
 }
 
 variable "ecs_cluster_id" {
-  description = "ECS Cluster ID"
+  description = "ID of the ECS cluster"
   type        = string
 }
 
@@ -24,61 +49,13 @@ variable "ecs_sg_id" {
   type        = string
 }
 
-# === FRONTEND ===
-variable "frontend_image" {
-  description = "Docker image for frontend"
-  type        = string
-  default     = "615299759149.dkr.ecr.us-east-1.amazonaws.com/frontend:placeholder"
-}
-
-variable "frontend_env_vars" {
-  description = "Environment variables for frontend"
-  type        = list(object({ name = string, value = string }))
-  default     = []
-}
-
-variable "cloud_map_frontend_arn" {
-  description = "Cloud Map ARN for frontend"
+variable "cloud_map_service_arn" {
+  description = "ARN of Cloud Map service for ECS service discovery"
   type        = string
 }
 
-variable "frontend_tg_arn" {
-  description = "Target Group ARN for frontend"
+variable "target_group_arn" {
+  description = "ALB Target Group ARN if load balancer is used"
   type        = string
-}
-
-# === BACKEND RDS ===
-variable "backend_rds_image" {
-  description = "Docker image for backend-rds"
-  type        = string
-  default     = "615299759149.dkr.ecr.us-east-1.amazonaws.com/backend-rds:placeholder"
-}
-
-variable "backend_rds_env_vars" {
-  description = "Environment variables for backend-rds"
-  type        = list(object({ name = string, value = string }))
-  default     = []
-}
-
-variable "cloud_map_backend_rds_arn" {
-  description = "Cloud Map ARN for backend-rds"
-  type        = string
-}
-
-# === BACKEND REDIS ===
-variable "backend_redis_image" {
-  description = "Docker image for backend-redis"
-  type        = string
-  default     = "615299759149.dkr.ecr.us-east-1.amazonaws.com/backend-redis:placeholder"
-}
-
-variable "backend_redis_env_vars" {
-  description = "Environment variables for backend-redis"
-  type        = list(object({ name = string, value = string }))
-  default     = []
-}
-
-variable "cloud_map_backend_redis_arn" {
-  description = "Cloud Map ARN for backend-redis"
-  type        = string
+  default     = null
 }

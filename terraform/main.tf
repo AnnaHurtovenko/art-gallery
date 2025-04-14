@@ -58,50 +58,50 @@ module "ecs" {
 }
 
 module "ecs_frontend" {
-  source                 = "./modules/ecs/services"
-  frontend_image         = module.ecr.frontend_url
-  execution_role_arn     = module.iam.ecs_execution_role_arn
-  ecs_cluster_id         = module.ecs.ecs_cluster_id
-  region                 = var.region
-  private_subnets        = module.vpc.private_subnets
-  ecs_sg_id              = aws_security_group.ecs_sg.id
-  cloud_map_frontend_arn = module.ecs.cloud_map_frontend_arn
-  frontend_env_vars      = []
-  frontend_tg_arn        = module.alb.target_group_arn
-
-  cloud_map_backend_rds_arn   = module.ecs.cloud_map_backend_rds_arn
-  cloud_map_backend_redis_arn = module.ecs.cloud_map_backend_redis_arn
+  source                = "./modules/ecs/service"
+  service_name          = "frontend"
+  container_image       = module.ecr.frontend_url
+  container_port        = 8002
+  execution_role_arn    = module.iam.ecs_execution_role_arn
+  ecs_cluster_id        = module.ecs.ecs_cluster_id
+  region                = var.region
+  private_subnets       = module.vpc.private_subnets
+  ecs_sg_id             = aws_security_group.ecs_sg.id
+  cloud_map_service_arn = module.ecs.cloud_map_frontend_arn
+  target_group_arn      = module.alb.target_group_arn
+  container_env_vars    = []
 }
+
 
 module "ecs_backend_rds" {
-  source                      = "./modules/ecs/services"
-  backend_rds_image           = module.ecr.backend_rds_url
-  execution_role_arn          = module.iam.ecs_execution_role_arn
-  ecs_cluster_id              = module.ecs.ecs_cluster_id
-  region                      = var.region
-  private_subnets             = module.vpc.private_subnets
-  ecs_sg_id                   = aws_security_group.ecs_sg.id
-  cloud_map_backend_rds_arn   = module.ecs.cloud_map_backend_rds_arn
-
-  cloud_map_frontend_arn      = module.ecs.cloud_map_frontend_arn
-  cloud_map_backend_redis_arn = module.ecs.cloud_map_backend_redis_arn
-  frontend_tg_arn             = module.alb.target_group_arn
+  source                = "./modules/ecs/service"
+  service_name          = "backend-rds"
+  container_image       = module.ecr.backend_rds_url
+  container_port        = 8000
+  execution_role_arn    = module.iam.ecs_execution_role_arn
+  ecs_cluster_id        = module.ecs.ecs_cluster_id
+  region                = var.region
+  private_subnets       = module.vpc.private_subnets
+  ecs_sg_id             = aws_security_group.ecs_sg.id
+  cloud_map_service_arn = module.ecs.cloud_map_backend_rds_arn
+  container_env_vars    = []
 }
+
 
 module "ecs_backend_redis" {
-  source                      = "./modules/ecs/services"
-  backend_redis_image         = module.ecr.backend_redis_url
-  execution_role_arn          = module.iam.ecs_execution_role_arn
-  ecs_cluster_id              = module.ecs.ecs_cluster_id
-  region                      = var.region
-  private_subnets             = module.vpc.private_subnets
-  ecs_sg_id                   = aws_security_group.ecs_sg.id
-  cloud_map_backend_redis_arn = module.ecs.cloud_map_backend_redis_arn
-
-  cloud_map_frontend_arn      = module.ecs.cloud_map_frontend_arn
-  cloud_map_backend_rds_arn   = module.ecs.cloud_map_backend_rds_arn
-  frontend_tg_arn             = module.alb.target_group_arn
+  source                = "./modules/ecs/service"
+  service_name          = "backend-redis"
+  container_image       = module.ecr.backend_redis_url
+  container_port        = 8001
+  execution_role_arn    = module.iam.ecs_execution_role_arn
+  ecs_cluster_id        = module.ecs.ecs_cluster_id
+  region                = var.region
+  private_subnets       = module.vpc.private_subnets
+  ecs_sg_id             = aws_security_group.ecs_sg.id
+  cloud_map_service_arn = module.ecs.cloud_map_backend_redis_arn
+  container_env_vars    = []
 }
+
 
 module "rds" {
   source                             = "./modules/rds"
