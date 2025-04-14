@@ -40,13 +40,11 @@ variable "frontend_env_vars" {
 variable "cloud_map_frontend_arn" {
   description = "Cloud Map ARN for frontend"
   type        = string
-  default     = null
 }
 
 variable "frontend_tg_arn" {
   description = "Target Group ARN for frontend"
   type        = string
-  default     = null
 }
 
 # === BACKEND RDS ===
@@ -65,7 +63,6 @@ variable "backend_rds_env_vars" {
 variable "cloud_map_backend_rds_arn" {
   description = "Cloud Map ARN for backend-rds"
   type        = string
-  default     = null
 }
 
 # === BACKEND REDIS ===
@@ -84,5 +81,4 @@ variable "backend_redis_env_vars" {
 variable "cloud_map_backend_redis_arn" {
   description = "Cloud Map ARN for backend-redis"
   type        = string
-  default     = null
 }
