@@ -58,7 +58,7 @@ module "ecs" {
 }
 
 module "ecs_frontend" {
-  source                = "./modules/ecs/service"
+  source                = "./modules/ecs/services"
   service_name          = "frontend"
   container_image       = module.ecr.frontend_url
   container_port        = 8002
@@ -74,7 +74,7 @@ module "ecs_frontend" {
 
 
 module "ecs_backend_rds" {
-  source                = "./modules/ecs/service"
+  source                = "./modules/ecs/services"
   service_name          = "backend-rds"
   container_image       = module.ecr.backend_rds_url
   container_port        = 8000
@@ -89,7 +89,7 @@ module "ecs_backend_rds" {
 
 
 module "ecs_backend_redis" {
-  source                = "./modules/ecs/service"
+  source                = "./modules/ecs/services"
   service_name          = "backend-redis"
   container_image       = module.ecr.backend_redis_url
   container_port        = 8001
