@@ -7,7 +7,7 @@ variable "postgresql_identifier" {
 variable "postgresql_engine_version" {
   description = "PostgreSQL engine version"
   type        = string
-  default     = "13.3"
+  default     = "17.2"
 }
 
 variable "postgresql_instance_class" {
