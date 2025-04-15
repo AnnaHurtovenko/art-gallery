@@ -64,3 +64,8 @@ variable "task_role_arn" {
   description = "IAM Task Role ARN used by the container"
   type        = string
 }
+
+variable "cloudwatch_log_group_name" {
+  description = "CloudWatch Log Group name for ECS Exec"
+  type        = string
+}
