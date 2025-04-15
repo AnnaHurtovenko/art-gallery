@@ -63,6 +63,7 @@ module "ecs_frontend" {
   container_image       = module.ecr.frontend_url
   container_port        = 8002
   execution_role_arn    = module.iam.ecs_execution_role_arn
+  task_role_arn         = module.iam.ecs_task_role_arn
   ecs_cluster_id        = module.ecs.ecs_cluster_id
   region                = var.region
   private_subnets       = module.vpc.private_subnets
@@ -88,6 +89,7 @@ module "ecs_backend_rds" {
   container_image       = module.ecr.backend_rds_url
   container_port        = 8000
   execution_role_arn    = module.iam.ecs_execution_role_arn
+  task_role_arn         = module.iam.ecs_task_role_arn
   ecs_cluster_id        = module.ecs.ecs_cluster_id
   region                = var.region
   private_subnets       = module.vpc.private_subnets
@@ -130,6 +132,7 @@ module "ecs_backend_redis" {
   container_image       = module.ecr.backend_redis_url
   container_port        = 8001
   execution_role_arn    = module.iam.ecs_execution_role_arn
+  task_role_arn         = module.iam.ecs_task_role_arn
   ecs_cluster_id        = module.ecs.ecs_cluster_id
   region                = var.region
   private_subnets       = module.vpc.private_subnets

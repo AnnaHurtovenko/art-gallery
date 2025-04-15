@@ -59,3 +59,8 @@ variable "target_group_arn" {
   type        = string
   default     = null
 }
+
+variable "task_role_arn" {
+  description = "IAM Task Role ARN used by the container"
+  type        = string
+}
