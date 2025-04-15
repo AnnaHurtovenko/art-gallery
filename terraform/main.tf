@@ -139,7 +139,7 @@ module "ecs_backend_redis" {
   container_env_vars = [
     {
       name  = "REDIS_HOST"
-      value = "redis-cache"
+      value = "backend-redis.art-gallery.local"
     },
     {
       name  = "REDIS_PORT"

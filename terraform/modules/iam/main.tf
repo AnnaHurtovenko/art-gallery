@@ -32,6 +32,10 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_role_cwlogs" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "ecs_exec_ssm" {
+  role       = aws_iam_role.ecs_execution_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
 
 # ECS Task Role 
 data "aws_iam_policy_document" "ecs_task_assume_role" {
