@@ -25,7 +25,3 @@ output "ecs_cluster_id" {
   value       = aws_ecs_cluster.main.id
 }
 
-output "cloudwatch_log_group_name" {
-  value       = aws_cloudwatch_log_group.ecs_logs.name
-  description = "Name of the CloudWatch log group"
-}
