@@ -12,7 +12,7 @@ variable "redis_cluster_id" {
 variable "redis_engine_version" {
   description = "Redis engine version"
   type        = string
-  default     = "7.x"
+  default     = "7.2"
 }
 
 variable "redis_node_type" {
