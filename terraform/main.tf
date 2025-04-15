@@ -191,9 +191,9 @@ module "cloudwatch" {
 
 
 module "redis" {
-  source                  = "./modules/redis"
-  private_subnet_ids      = module.vpc.private_subnets
-  redis_security_group_id = aws_security_group.redis_sg.id
-  environment             = var.environment
-  project_tag             = var.project_tag
+  source             = "./modules/redis"
+  private_subnet_ids = module.vpc.private_subnets
+  redis_sg_id        = aws_security_group.redis_sg.id  
+  environment        = var.environment
+  project_tag        = var.project_tag
 }
