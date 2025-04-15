@@ -109,7 +109,7 @@ module "ecs_backend_rds" {
     },
     {
       name  = "DB_HOST"
-      value = module.rds.db_instance_endpoint
+      value = module.rds.rds_endpoint
     },
     {
       name  = "DB_PORT"
