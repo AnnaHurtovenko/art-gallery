@@ -149,11 +149,11 @@ module "ecs_backend_redis" {
   container_env_vars = [
     {
       name  = "REDIS_HOST"
-      value = "backend-redis.art-gallery.local"
+      value = module.redis.redis_endpoint
     },
     {
       name  = "REDIS_PORT"
-      value = "6379"
+      value = tostring(module.redis.redis_port)
     },
     {
       name  = "REDIS_DB"
@@ -187,4 +187,13 @@ module "cloudwatch" {
   project_tag      = var.project_tag
   ecs_cluster_name = "art-gallery"
   alarm_actions    = []
+}
+
+
+module "redis" {
+  source                  = "./modules/redis"
+  private_subnet_ids      = module.vpc.private_subnets
+  redis_security_group_id = aws_security_group.redis_sg.id
+  environment             = var.environment
+  project_tag             = var.project_tag
 }
