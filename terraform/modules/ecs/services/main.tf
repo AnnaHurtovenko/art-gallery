@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "this" {
     logConfiguration = {
       logDriver = "awslogs"
       options = {
-        awslogs-group         = "/ecs/art-gallery"
+        awslogs-group         = var.cloudwatch_log_group_name
         awslogs-region        = var.region
         awslogs-stream-prefix = var.service_name
       }

@@ -55,7 +55,6 @@ module "ecs" {
   project_tag               = var.project_tag
   vpc_id                    = module.vpc.vpc_id
   region                    = var.region
-  cloudwatch_log_group_name = aws_cloudwatch_log_group.ecs_logs.name
 }
 
 
@@ -72,7 +71,7 @@ module "ecs_frontend" {
   ecs_sg_id             = aws_security_group.ecs_sg.id
   cloud_map_service_arn = module.ecs.cloud_map_frontend_arn
   target_group_arn      = module.alb.target_group_arn
-  cloudwatch_log_group_name  = aws_cloudwatch_log_group.ecs_logs.name
+  cloudwatch_log_group_name = module.ecs.cloudwatch_log_group_name
 
   container_env_vars = [
     {
@@ -98,7 +97,7 @@ module "ecs_backend_rds" {
   private_subnets       = module.vpc.private_subnets
   ecs_sg_id             = aws_security_group.ecs_sg.id
   cloud_map_service_arn = module.ecs.cloud_map_backend_rds_arn
-  cloudwatch_log_group_name  = aws_cloudwatch_log_group.ecs_logs.name
+  cloudwatch_log_group_name  = module.ecs.cloudwatch_log_group_name
 
   container_env_vars = [
     {
@@ -142,7 +141,7 @@ module "ecs_backend_redis" {
   private_subnets       = module.vpc.private_subnets
   ecs_sg_id             = aws_security_group.ecs_sg.id
   cloud_map_service_arn = module.ecs.cloud_map_backend_redis_arn
-  cloudwatch_log_group_name  = aws_cloudwatch_log_group.ecs_logs.name
+  cloudwatch_log_group_name  = module.ecs.cloudwatch_log_group_name
   container_env_vars = [
     {
       name  = "REDIS_HOST"
@@ -163,8 +162,6 @@ module "ecs_backend_redis" {
   ]
 }
 
-
-
 module "rds" {
   source                             = "./modules/rds"
   postgresql_password                = var.rds_password
@@ -184,6 +181,6 @@ module "cloudwatch" {
   source           = "./modules/cloudwatch"
   environment      = var.environment
   project_tag      = var.project_tag
-  ecs_cluster_name = "art-gallery-cluster"
+  ecs_cluster_name = "art-gallery"
   alarm_actions    = []
 }
