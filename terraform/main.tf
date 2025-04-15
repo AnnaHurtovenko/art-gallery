@@ -117,7 +117,7 @@ module "ecs_backend_rds" {
     },
     {
       name  = "DB_HOST"
-      value = module.rds.rds_endpoint
+      value = replace(module.rds.rds_endpoint, ":5432", "")
     },
     {
       name  = "DB_PORT"
