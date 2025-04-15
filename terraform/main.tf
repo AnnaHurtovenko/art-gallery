@@ -72,6 +72,7 @@ module "ecs_frontend" {
   ecs_sg_id             = aws_security_group.ecs_sg.id
   cloud_map_service_arn = module.ecs.cloud_map_frontend_arn
   target_group_arn      = module.alb.target_group_arn
+  cloudwatch_log_group_name  = aws_cloudwatch_log_group.ecs_logs.name
 
   container_env_vars = [
     {
@@ -97,6 +98,7 @@ module "ecs_backend_rds" {
   private_subnets       = module.vpc.private_subnets
   ecs_sg_id             = aws_security_group.ecs_sg.id
   cloud_map_service_arn = module.ecs.cloud_map_backend_rds_arn
+  cloudwatch_log_group_name  = aws_cloudwatch_log_group.ecs_logs.name
 
   container_env_vars = [
     {
@@ -140,7 +142,7 @@ module "ecs_backend_redis" {
   private_subnets       = module.vpc.private_subnets
   ecs_sg_id             = aws_security_group.ecs_sg.id
   cloud_map_service_arn = module.ecs.cloud_map_backend_redis_arn
-
+  cloudwatch_log_group_name  = aws_cloudwatch_log_group.ecs_logs.name
   container_env_vars = [
     {
       name  = "REDIS_HOST"
