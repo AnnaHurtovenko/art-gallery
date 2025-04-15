@@ -82,32 +82,38 @@ module "ecs_frontend" {
   ]
 }
 
-
-
-module "ecs_backend_redis" {
+module "ecs_backend_rds" {
   source                = "./modules/ecs/services"
-  service_name          = "backend-redis"
-  container_image       = module.ecr.backend_redis_url
-  container_port        = 8001
+  service_name          = "backend-rds"
+  container_image       = module.ecr.backend_rds_url
+  container_port        = 8000
   execution_role_arn    = module.iam.ecs_execution_role_arn
   ecs_cluster_id        = module.ecs.ecs_cluster_id
   region                = var.region
   private_subnets       = module.vpc.private_subnets
   ecs_sg_id             = aws_security_group.ecs_sg.id
-  cloud_map_service_arn = module.ecs.cloud_map_backend_redis_arn
+  cloud_map_service_arn = module.ecs.cloud_map_backend_rds_arn
 
   container_env_vars = [
     {
-      name  = "REDIS_HOST"
-      value = "redis-cache"
+      name  = "DB_NAME"
+      value = "artgallery"
     },
     {
-      name  = "REDIS_PORT"
-      value = "6379"
+      name  = "DB_USER"
+      value = "postgres"
     },
     {
-      name  = "REDIS_DB"
-      value = "0"
+      name  = "DB_PASSWORD"
+      value = var.rds_password
+    },
+    {
+      name  = "DB_HOST"
+      value = module.rds.db_instance_endpoint
+    },
+    {
+      name  = "DB_PORT"
+      value = "5432"
     },
     {
       name  = "CORS_ALLOWED_ORIGINS"
