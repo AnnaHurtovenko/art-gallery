@@ -55,8 +55,6 @@ module "ecs" {
   project_tag              = var.project_tag
   vpc_id                   = module.vpc.vpc_id
   region                   = var.region
-
-  cloudwatch_log_group_name = aws_cloudwatch_log_group.ecs_logs.name
 }
 
 module "ecs_frontend" {
