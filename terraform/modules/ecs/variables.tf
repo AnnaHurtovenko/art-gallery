@@ -20,3 +20,7 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "cloudwatch_log_group_name" {
+  description = "CloudWatch Log Group name for ECS Exec"
+  type        = string
+}
