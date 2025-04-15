@@ -52,7 +52,6 @@ resource "aws_ecs_service" "this" {
   service_registries {
     registry_arn = var.cloud_map_service_arn
     container_name = var.service_name
-    container_port = var.container_port
   }
 
   depends_on = [aws_ecs_task_definition.this]
